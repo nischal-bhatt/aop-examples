@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="library" class="nischal.bhatt.methodinterceptorexample.Library.Library">
+         <property name="book" ref="book"></property>
+    </bean>
+ 
+    <bean id="book" class="nischal.bhatt.methodinterceptorexample.Book.Book">
+         <property name="title" value="Spring XML Configuration"></property>
+         <property name="author" value="JavaInterviewPoint"></property>
+         <property name="publications" value="JIP Publication"></property>
+     </bean>
+     
+     <bean id="ls" class="nischal.bhatt.methodinterceptorexample.LoggingService.LoggingService" />
+     <bean id="rs" class="nischal.bhatt.methodinterceptorexample.RunningExample.RunningExample" />
+     <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="rs" />
+		<property name="interceptorNames">
+			<list>
+				<value>ls</value>
+			</list>
+		</property>
+	</bean>
+     
+</beans>
